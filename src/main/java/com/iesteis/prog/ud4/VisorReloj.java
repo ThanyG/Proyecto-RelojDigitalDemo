@@ -14,6 +14,8 @@ public class VisorReloj
 {
     private VisorNumero horas;
     private VisorNumero minutos;
+
+    private VisorNumero segundos;
     private String visorString; // simula el visor actual
 
     /**
@@ -25,6 +27,7 @@ public class VisorReloj
     {
         horas = new VisorNumero(24);
         minutos = new VisorNumero(60);
+        segundos = new VisorNumero(60);
         actualizarReloj();
         
     }
@@ -36,11 +39,13 @@ public class VisorReloj
      * al constructor
      */
 
-    public VisorReloj(int hora, int minuto) 
+    public VisorReloj(int hora, int minuto, int segundo)
     {
+
         horas = new VisorNumero(24);
         minutos = new VisorNumero(60);
-        ponerEnHora(hora, minuto);
+        segundos = new VisorNumero(60);
+        ponerEnHora(hora, minuto, segundo);
          
     }
 
@@ -58,15 +63,30 @@ public class VisorReloj
         }
         actualizarReloj();
     }
+    public void emitirTac()
+    {
+        segundos.incrementar();
+
+        if (segundos.getValor() == 0) {
+            minutos.incrementar();
+
+            if (minutos.getValor() == 0) {
+                horas.incrementar();
+            }
+        }
+
+        actualizarReloj();
+    }
 
     /**
      * Pone la hora en el visor a un deternminado valor de hora y minuto
      */
 
-    public void ponerEnHora(int hora, int minuto)
+    public void ponerEnHora(int hora, int minuto, int segundo)
     {
         horas.setValor(hora);
         minutos.setValor(minuto);
+        segundos.setValor(segundo);
         actualizarReloj();
     }
 
@@ -83,7 +103,7 @@ public class VisorReloj
      */
     private void actualizarReloj()
     {
-        visorString = horas.getValorVisor() + ":" + minutos.getValorVisor();
+        visorString = horas.getValorVisor() + ":" + minutos.getValorVisor() + ":" + segundos.getValorVisor();
     }
     
    

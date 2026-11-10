@@ -4,37 +4,62 @@ package com.iesteis.prog.ud4;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 public class Main {
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            // Crear un reloj
-            VisorReloj reloj = new VisorReloj();
+        // Cree un reloj con el constructor por defecto
+        VisorReloj reloj1 = new VisorReloj();
 
-            // Mostrar hora inicial
-            System.out.println("Hora inicial: " + reloj.getHora());
+        // Muestro la Hora Inicial
+        System.out.println("Hora inicial: " + reloj1.getHora());
 
-            // Avanzar un minuto
-            reloj.emitirTic();
-            System.out.println("Después de un tic: " + reloj.getHora());
+        // Emito dos tics (dos minutos)
+        reloj1.emitirTic();
+        reloj1.emitirTic();
 
-            // Poner una hora concreta
-            reloj.ponerEnHora(10, 30);
-            System.out.println("Hora configurada: " + reloj.getHora());
+        System.out.println("Después de dos tics: " + reloj1.getHora());
 
-            // Avanzar 10 minutos
-            for (int i = 0; i < 10; i++) {
-                reloj.emitirTic();
-            }
-            System.out.println("Después de 10 minutos: " + reloj.getHora());
+        // Emito dos tacs (dos segundos)
+        reloj1.emitirTac();
+        reloj1.emitirTac();
 
-            // Probar el cambio de hora
-            reloj.ponerEnHora(14, 59);
-            reloj.emitirTic();
-            System.out.println("Cambio de hora: " + reloj.getHora());
+        System.out.println("Después de dos tacs: " + reloj1.getHora());
 
-            // Probar el cambio de día
-            reloj.ponerEnHora(23, 59);
-            reloj.emitirTic();
-            System.out.println("Cambio de día: " + reloj.getHora());
-        }
+
+        // Cree otro reloj con una hora concreta
+        VisorReloj reloj2 = new VisorReloj();
+
+        reloj2.ponerEnHora(10, 58, 55);
+
+        System.out.println("Hora configurada: " + reloj2.getHora());
+
+        // Avanzar segundos hasta cambiar de minuto
+        reloj2.emitirTac();
+        reloj2.emitirTac();
+        reloj2.emitirTac();
+        reloj2.emitirTac();
+        reloj2.emitirTac();
+
+        System.out.println("Después de cinco tacs: " + reloj2.getHora());
+
+        // Pruebo el cambio de hora
+        reloj2.ponerEnHora(14, 59, 59);
+
+        System.out.println("Antes del cambio de hora: " + reloj2.getHora());
+
+        reloj2.emitirTac();
+
+        System.out.println("Después del cambio de hora: " + reloj2.getHora());
+
+
+        // Pruebo el cambio de día
+        reloj2.ponerEnHora(23, 59, 59);
+
+        System.out.println("Antes del cambio de día: " + reloj2.getHora());
+
+        reloj2.emitirTac();
+
+        System.out.println("Después del cambio de día: " + reloj2.getHora());
     }
+}
+
 
